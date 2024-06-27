@@ -4,3 +4,8 @@ export interface paymentType {
   shipment: number;
   grandTotal: number;
 }
+export interface discountCodeType {
+  bronze: string;
+  silver: string;
+  gold: string;
+}

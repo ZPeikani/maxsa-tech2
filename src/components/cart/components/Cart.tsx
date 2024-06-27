@@ -17,20 +17,11 @@ import Card from "@/components/shared/card/components";
 import { useGetProduct } from "../hooks";
 import CartItem from "@/components/shared/cart-item/CartItem";
 import PaymentDetails from "./paymentDetails/PaymentDetails";
+
 const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
     top: 22,
   },
-  // [&.${stepConnectorClasses.active}]: {
-  //   [& .${stepConnectorClasses.line}]: {
-  //     backgroundColor:"#78ABF9"
-  //   },
-  // },
-  // [&.${stepConnectorClasses.completed}]: {
-  //   [& .${stepConnectorClasses.line}]: {
-  //     backgroundColor:"#78ABF9"
-  //   },
-  // },
   [`& .${stepConnectorClasses.line}`]: {
     height: 3,
     border: 0,
@@ -53,10 +44,6 @@ const ColorlibStepIconRoot = styled("div")<{
   borderRadius: "50%",
   justifyContent: "center",
   alignItems: "center",
-  // ...(ownerState.active && {
-  //   backgroundColor:"#78ABF9",
-  //   boxShadow: '0 4px 10px 0 rgba(0,0,0,.25)',
-  // }),
   ...(ownerState.active && {
     backgroundColor: "white",
     boxShadow: "0 4px 10px 0 rgba(0,0,0,.25)",
@@ -92,28 +79,6 @@ export default function Cart() {
   const { data: randomProducts } = useGetProduct();
   const userId = fetchIdCookie();
   const { data: cartItems } = useGetCartItems(userId);
-
-  const shipment = 22.5;
-  const [subtotal, setSubTotal] = useState(0);
-  const [discount, setDiscount] = useState(0);
-  const [grandTotal, setGrandTotal] = useState(0);
-
-  useEffect(() => {
-    let newSubtotal = 0;
-    let newDiscount = 0;
-    let newGrandTotal = 0;
-    cartItems?.map((item: any) => {
-      getCartItemDetails(item.productId).then((productDetail) => {
-        newDiscount +=
-          (productDetail.discount.percent * productDetail.price) / 100;
-        newSubtotal += productDetail.price;
-        setSubTotal(newSubtotal);
-        setDiscount(newDiscount);
-        newGrandTotal = newSubtotal - newDiscount + shipment;
-        setGrandTotal(newGrandTotal);
-      });
-    });
-  }, [cartItems]);
 
   return (
     <Box>
@@ -160,12 +125,7 @@ export default function Cart() {
             ))}
           </Stack>
           <Stack>
-            <PaymentDetails
-              subtotal={subtotal}
-              discount={discount}
-              shipment={shipment}
-              grandTotal={grandTotal}
-            />
+            <PaymentDetails />
           </Stack>
         </Stack>
         <Stack direction={"column"}>
