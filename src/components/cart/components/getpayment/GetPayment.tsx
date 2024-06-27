@@ -2,14 +2,9 @@ import { fetchIdCookie, getCartItemDetails } from "@/layout/navbar/services";
 import Payment from "../payment/Payment";
 import { useGetCartItems } from "@/layout/navbar/hooks";
 import { useEffect, useState } from "react";
-import { Button, Stack } from "@mui/material";
-import Link from "next/link";
+import { Stack } from "@mui/material";
 
-type GetPaymentProps = {
-  link: string;
-  buttonText:string
-}
-export default function GetPayment({link,buttonText}:GetPaymentProps) {
+export default function GetPayment() {
   const userId = fetchIdCookie();
   const { data: cartItems } = useGetCartItems(userId);
   const shipment = 22.5;
@@ -42,15 +37,6 @@ export default function GetPayment({link,buttonText}:GetPaymentProps) {
         shipment={shipment}
         grandTotal={grandTotal}
       />
-      <Link href={link}>
-          <Button
-            variant="contained"
-            sx={{ mt: "25px", py: "12px", textTransform: "none" }}
-            fullWidth
-          >
-            {buttonText}
-          </Button>
-        </Link>
     </Stack>
   );
 }

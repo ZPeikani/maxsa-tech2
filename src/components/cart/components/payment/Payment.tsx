@@ -1,5 +1,6 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Button, Stack, Typography } from "@mui/material";
 import { paymentType } from "../../hooks/type";
+import Link from "next/link";
 
 export default function Payment({
   subtotal,

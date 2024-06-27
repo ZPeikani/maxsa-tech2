@@ -10,7 +10,9 @@ import {
   Typography,
 } from "@mui/material";
 import { useEffect, useState } from "react";
-import GetPayment from "@/components/cart/components/getpayment/GetPayment";
+import Payment from "@/components/cart/components/payment/Payment";
+import PaymentButton from "@/button/payment-button/PaymentButton";
+import { discountCodeType } from "../../hook/type";
 export default function UserOrder() {
   const userId = fetchIdCookie();
   const { data: cartItems } = useGetCartItems(userId);
@@ -19,8 +21,8 @@ export default function UserOrder() {
   const [subtotal, setSubTotal] = useState(0);
   const [grandTotal, setGrandTotal] = useState(0);
   const [discount, setDiscount] = useState(0);
-  const [discountCodeInput, setDiscountCodeInput] = useState("");
-  const discountCode = { bronze: "10", silver: "20", gold: "30" };
+  const [discountCodeInput, setDiscountCodeInput] = useState<string>("");
+  const discountCode:discountCodeType = { bronze: "10", silver: "20", gold: "30" };
 
   useEffect(() => {
     let newSubtotal = 0;
@@ -48,10 +50,11 @@ export default function UserOrder() {
       setGrandTotal(subtotal - discountAmount + shipment);
     }
   };
+
   return (
-    <Card>
+    <Card sx={{minHeight:"338px"}}>
       <CardContent>
-        <Stack direction={"row"} gap={"25px"}>
+        <Stack direction={"row"} gap={"25px"} minHeight={"331px"}>
           <Stack direction={"column"}>
             <Typography variant="h5" mb={1.5}>
               Your Order
@@ -80,7 +83,13 @@ export default function UserOrder() {
                 </Button>
               </Stack>
             </Stack>
-            <GetPayment link="/payment" buttonText="Continue to pay"/>
+            <Payment
+              subtotal={subtotal}
+              discount={discount}
+              shipment={shipment}
+              grandTotal={grandTotal}
+            />
+           <PaymentButton link="/payment" buttonText="Continue to pay"/>
           </Stack>
         </Stack>
       </CardContent>

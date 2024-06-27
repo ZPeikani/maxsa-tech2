@@ -1,5 +1,6 @@
 import {Card, CardContent, Typography } from "@mui/material";
 import GetPayment from "../getpayment/GetPayment";
+import PaymentButton from "@/button/payment-button/PaymentButton";
 
 export default function PaymentDetails() {
   return (
@@ -13,8 +14,8 @@ export default function PaymentDetails() {
         <Typography fontSize={"24px"} fontWeight={"500"} mb={2.5}>
           Payment Details
         </Typography>
-
-        <GetPayment link="/checkout" buttonText="Procced to checkout"/>
+        <GetPayment />
+        <PaymentButton link="/checkout" buttonText="Proceed to checkout"/>
       </CardContent>
     </Card>
   );
