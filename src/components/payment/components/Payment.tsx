@@ -139,7 +139,7 @@ export default function Payment() {
       </Box>
       <Stack direction={"row"} justifyContent={"space-between"} mb={6}>
         <PaymentInfo />
-        <UserOrder />
+        <UserOrder link="/account/order" buttonText="Place order" />
       </Stack>
     </Box>
   );

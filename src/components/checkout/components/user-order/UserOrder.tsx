@@ -11,9 +11,13 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import Payment from "@/components/cart/components/payment/Payment";
-import PaymentButton from "@/button/payment-button/PaymentButton";
 import { discountCodeType } from "../../hook/type";
-export default function UserOrder() {
+import Link from "next/link";
+type ButtonProps = {
+  link: string;
+  buttonText:string
+}
+export default function UserOrder({link,buttonText}:ButtonProps) {
   const userId = fetchIdCookie();
   const { data: cartItems } = useGetCartItems(userId);
 
@@ -22,7 +26,11 @@ export default function UserOrder() {
   const [grandTotal, setGrandTotal] = useState(0);
   const [discount, setDiscount] = useState(0);
   const [discountCodeInput, setDiscountCodeInput] = useState<string>("");
-  const discountCode:discountCodeType = { bronze: "10", silver: "20", gold: "30" };
+  const discountCode: discountCodeType = {
+    bronze: "10",
+    silver: "20",
+    gold: "30",
+  };
 
   useEffect(() => {
     let newSubtotal = 0;
@@ -52,7 +60,7 @@ export default function UserOrder() {
   };
 
   return (
-    <Card sx={{minHeight:"338px"}}>
+    <Card sx={{ minHeight: "338px" }}>
       <CardContent>
         <Stack direction={"row"} gap={"25px"} minHeight={"331px"}>
           <Stack direction={"column"}>
@@ -89,7 +97,15 @@ export default function UserOrder() {
               shipment={shipment}
               grandTotal={grandTotal}
             />
-           <PaymentButton link="/payment" buttonText="Continue to pay"/>
+            <Link href={link}>
+              <Button
+                variant="contained"
+                sx={{ mt: "25px", py: "12px", textTransform: "none" }}
+                fullWidth
+              >
+                {buttonText}
+              </Button>
+            </Link>
           </Stack>
         </Stack>
       </CardContent>

@@ -142,7 +142,7 @@ export default function Checkout() {
       </Box>
       <Stack direction={"row"} justifyContent={"space-between"} mb={6}>
         <UserInfo />
-        <UserOrder />
+        <UserOrder link="/payment" buttonText="Continue to pay" />
       </Stack>
     </Box>
   );

@@ -1,6 +1,6 @@
-import {Card, CardContent, Typography } from "@mui/material";
+import {Button, Card, CardContent, Typography } from "@mui/material";
 import GetPayment from "../getpayment/GetPayment";
-import PaymentButton from "@/button/payment-button/PaymentButton";
+import Link from "next/link";
 
 export default function PaymentDetails() {
   return (
@@ -15,7 +15,15 @@ export default function PaymentDetails() {
           Payment Details
         </Typography>
         <GetPayment />
-        <PaymentButton link="/checkout" buttonText="Proceed to checkout"/>
+        <Link href="/checkout">
+        <Button
+          variant="contained"
+          sx={{ mt: "25px", py: "12px", textTransform: "none" }}
+          fullWidth
+        >
+          Proceed to checkout
+        </Button>
+      </Link>
       </CardContent>
     </Card>
   );
