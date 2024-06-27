@@ -1,6 +1,6 @@
 import { Box, Stack, Typography } from "@mui/material";
 import { useGetCartItems } from "@/layout/navbar/hooks";
-import { fetchIdCookie, getCartItemDetails } from "@/layout/navbar/services";
+import { fetchIdCookie } from "@/layout/navbar/services";
 import { styled } from "@mui/material/styles";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
@@ -12,7 +12,6 @@ import { StepIconProps } from "@mui/material/StepIcon";
 import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 import LocalShippingOutlinedIcon from "@mui/icons-material/LocalShippingOutlined";
 import PaymentOutlinedIcon from "@mui/icons-material/PaymentOutlined";
-import { useEffect, useState } from "react";
 import Card from "@/components/shared/card/components";
 import { useGetProduct } from "../hooks";
 import CartItem from "@/components/shared/cart-item/CartItem";

@@ -1,4 +1,4 @@
-import Payment from "@/components/payment/Payment";
+import Payment from "@/components/payment/components/Payment";
 import { NextPageWithLayout } from "../_app";
 import Layout from "@/layout";
 
