@@ -5,6 +5,7 @@
       "userName": "admin",
       "email": "admin@gmail.com",
       "password": "admin123",
+      "address": "",
       "role": "admin"
     },
     {
@@ -12,6 +13,7 @@
       "userName": "koushyar",
       "email": "koushyar@gmail.com",
       "password": "123456",
+      "address": "Tehran",
       "role": "normal"
     },
     {
@@ -19,6 +21,7 @@
       "userName": "soroush",
       "email": "soroush@gmail.com",
       "password": "123456",
+      "address": "Paveh",
       "role": "normal"
     },
     {
@@ -26,6 +29,7 @@
       "userName": "mammadreza",
       "email": "mammadreza@gmail.com",
       "password": "123456",
+      "address": "Shahrekord",
       "role": "normal"
     },
     {
@@ -33,6 +37,7 @@
       "userName": "zahra",
       "email": "zahra@gmail.com",
       "password": "123456",
+      "address": "Isfahan",
       "role": "normal"
     },
     {
@@ -40,6 +45,7 @@
       "userName": "zohre",
       "email": "zohre@gmail.com",
       "password": "123456",
+      "address":"Netherland",
       "role": "normal"
     },
     {
@@ -47,6 +53,7 @@
       "userName": "Mr. Hoseini",
       "email": "hoseini@gmail.com",
       "password": "123456",
+      "address": "Tehran",
       "role": "normal"
     }
   ],
@@ -159,6 +166,11 @@
     {
       "id": 1718641285326,
       "cartProducts": [
+        {
+          "productId": 1,
+          "quantity": 1,
+          "color": ""
+        },
         {
           "productId": 4,
           "quantity": 2,
