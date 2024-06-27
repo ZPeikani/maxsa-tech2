@@ -10,7 +10,7 @@ import Image from "next/image";
 
 type Props = {
   cartItemProps: ICartProducts;
-  changeComponent: "menu" | "account";
+  changeComponent: "menu" | "account" | "payment";
 };
 
 const CartItemDetails = ({ cartItemProps, changeComponent }: Props) => {
@@ -26,6 +26,10 @@ const CartItemDetails = ({ cartItemProps, changeComponent }: Props) => {
       width: "466px",
       height: "172px",
     },
+    payment: {
+      width: "257px",
+      height: "74px",
+    },
   };
   return (
     <Box sx={{ ...boxStyles[changeComponent], mr: "10px", my: "8px" }}>
@@ -36,7 +40,10 @@ const CartItemDetails = ({ cartItemProps, changeComponent }: Props) => {
         justifyContent={"space-between"}
         mb={changeComponent === "account" ? 3 : 0}
       >
-        <Typography fontSize="16px" fontWeight="600">
+        <Typography
+          fontSize={changeComponent === "payment" ? "12px" : "16px"}
+          fontWeight={changeComponent === "payment" ? "300" : "600"}
+        >
           {cartItemDetails?.name}
         </Typography>
         <Box
@@ -49,13 +56,21 @@ const CartItemDetails = ({ cartItemProps, changeComponent }: Props) => {
               {cartItemDetails.color}
             </Typography>
           )}
-          {changeComponent === "menu" && (
+          {changeComponent === "account" ? (
+            ""
+          ) : (
             <Typography fontSize="10px" fontWeight="500" color="#717171">
               ×{cartItemProps.quantity}
             </Typography>
           )}
-          <Image src={freeDelivery} alt="Free Delivery" />
-          <Image src={Guaranteed} alt="Guaranteed" />
+          {changeComponent === "payment" ? (
+            ""
+          ) : (
+            <>
+              <Image src={freeDelivery} alt="Free Delivery" />
+              <Image src={Guaranteed} alt="Guaranteed" />
+            </>
+          )}
         </Box>
         <Box
           display="flex"
@@ -67,46 +82,50 @@ const CartItemDetails = ({ cartItemProps, changeComponent }: Props) => {
             fontSize={changeComponent === "account" ? "16px" : "12px"}
             fontWeight={changeComponent === "account" ? "400" : "300"}
             color="#2D2D2D"
+            marginLeft={changeComponent === "payment" ? "auto" : ""}
           >
             ${(cartItemDetails?.price * cartItemProps.quantity).toFixed(2)}
           </Typography>
-          <Box
-            display="flex"
-            alignItems="center"
-            gap={1}
-            justifyContent="center"
-          >
-            <Box component="img" src={trashBtn.src} alt="Remove" />
-            <Stack
-              direction="row"
-              alignItems="center"
-              spacing={1}
-              borderBottom={1}
-              width="69px"
-              height="24px"
-            >
-              <Button
-                size="small"
-                sx={{ color: "#717171", minHeight: 16, minWidth: 16 }}
+          {changeComponent === "account" ||
+            (changeComponent === "menu" && (
+              <Box
+                display="flex"
+                alignItems="center"
+                gap={1}
+                justifyContent="center"
               >
-                <RemoveIcon />
-              </Button>
-              <Typography
-                fontSize="14px"
-                fontWeight="300"
-                textAlign="center"
-                color="#717171"
-              >
-                {String(cartItemProps.quantity)}
-              </Typography>
-              <Button
-                size="small"
-                sx={{ color: "#717171", minHeight: 16, minWidth: 16 }}
-              >
-                <AddIcon />
-              </Button>
-            </Stack>
-          </Box>
+                <Box component="img" src={trashBtn.src} alt="Remove" />
+                <Stack
+                  direction="row"
+                  alignItems="center"
+                  spacing={1}
+                  borderBottom={1}
+                  width="69px"
+                  height="24px"
+                >
+                  <Button
+                    size="small"
+                    sx={{ color: "#717171", minHeight: 16, minWidth: 16 }}
+                  >
+                    <RemoveIcon />
+                  </Button>
+                  <Typography
+                    fontSize="14px"
+                    fontWeight="300"
+                    textAlign="center"
+                    color="#717171"
+                  >
+                    {String(cartItemProps.quantity)}
+                  </Typography>
+                  <Button
+                    size="small"
+                    sx={{ color: "#717171", minHeight: 16, minWidth: 16 }}
+                  >
+                    <AddIcon />
+                  </Button>
+                </Stack>
+              </Box>
+            ))}
         </Box>
       </Box>
     </Box>
@@ -125,6 +144,10 @@ const CartItem = ({ cartItemProps, changeComponent }: Props) => {
       width: "704px",
       height: "212px",
     },
+    payment: {
+      width: "368px",
+      height: "86px",
+    },
   };
   return (
     <Box
@@ -137,12 +160,7 @@ const CartItem = ({ cartItemProps, changeComponent }: Props) => {
       borderRadius="8px"
     >
       <Box display="flex" justifyContent="center" alignItems="center">
-        <Box
-          component="img"
-          width={changeComponent === "account" ? 182 : 154}
-          src={cartItemDetails?.thumbnailImage}
-          ml={1.5}
-        />
+        <Box component="img" src={cartItemDetails?.thumbnailImage} ml={1.5} />
       </Box>
       <CartItemDetails
         cartItemProps={cartItemProps}
